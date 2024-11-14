@@ -15,10 +15,10 @@ namespace Bank
         public Person(string? firstName, string? lastName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
-                throw new ArgumentException("First name cannot be empty.");
+                throw new ArgumentException("Indtast fornavn");
 
             if (string.IsNullOrWhiteSpace(lastName))
-                throw new ArgumentException("Last name cannot be empty.");
+                throw new ArgumentException("Indtast efternavn");
 
             FirstName = firstName;
             LastName = lastName;
