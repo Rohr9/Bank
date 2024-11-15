@@ -5,14 +5,16 @@ namespace Bank
     public class Konto
     {
         private decimal _balance;
-        public Person Owner { get; }
+        public KontoOwner Owner { get; }
+        public KontoAdmin Admin { get; }
 
-        public Konto(Person owner, decimal initialDeposit)
+        public Konto(KontoOwner owner, KontoAdmin admin, decimal initialDeposit)
         {
             if (initialDeposit < 100)
-                throw new ArgumentException("Indsæt minimum 100kr.");
+                throw new ArgumentException("Indsæt minimum 100kr");
 
             Owner = owner ?? throw new ArgumentNullException(nameof(owner), "Fejl owner");
+            Admin = admin ?? throw new ArgumentNullException(nameof(admin), "Fejl admin");
             _balance = initialDeposit;
         }
 
@@ -49,7 +51,7 @@ namespace Bank
 
         public override string ToString()
         {
-            return $"Konto Ejer: {Owner.FullName}, Konto: {_balance:C}";
+            return $"Account Owner: {Owner.FullName}, Admin: {Admin.FullName}, Balance: {_balance:C}";
         }
     }
 }

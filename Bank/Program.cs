@@ -8,11 +8,27 @@ namespace Bank
         {
             Console.WriteLine("Velkommen til banken!");
 
-            Console.Write("Indtast dit fornavn: ");
-            string firstName = Console.ReadLine();
+            Console.Write("Indtast kunde-ID (6 cifre): ");
+            int customerID = int.Parse(Console.ReadLine());
 
-            Console.Write("Indtast dit efternavn: ");
-            string lastName = Console.ReadLine();
+            Console.Write("Indtast fornavn: ");
+            string ownerFirstName = Console.ReadLine();
+
+            Console.Write("Indtast efternavn: ");
+            string ownerLastName = Console.ReadLine();
+
+            KontoOwner owner = new KontoOwner(customerID, ownerFirstName, ownerLastName);
+
+            Console.Write("Indtast administratorens medarbejder-ID (6 cifre): ");
+            int adminID = int.Parse(Console.ReadLine());
+
+            Console.Write("Indtast administratorens fornavn: ");
+            string adminFirstName = Console.ReadLine();
+
+            Console.Write("Indtast administratorens efternavn: ");
+            string adminLastName = Console.ReadLine();
+
+            KontoAdmin admin = new KontoAdmin(adminID, adminFirstName, adminLastName);
 
             Console.Write("Indtast beløb for at oprette en konto (minimum 100 kr): ");
             decimal initialDeposit = decimal.Parse(Console.ReadLine());
@@ -23,10 +39,9 @@ namespace Bank
                 return;
             }
 
-            Person owner = new Person(firstName, lastName);
-            Konto account = new Konto(owner, initialDeposit);
+            Konto account = new Konto(owner, admin, initialDeposit);
 
-            Console.WriteLine($"Hej {owner.FullName}, din konto er oprettet!");
+            Console.WriteLine($"Hej {owner.FullName}. Din konto er oprettet med {admin.FullName} som admin!");
 
             while (true)
             {
